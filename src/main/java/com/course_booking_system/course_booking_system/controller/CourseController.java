@@ -22,11 +22,16 @@ public class CourseController {
 
     @GetMapping(value = "/courses")
     //        http://localhost:8080/courses?byStarRating=FOUR
-    public ResponseEntity<List<Course>> getCoursesByStarRating(@RequestParam(name = "byStarRating", required = false) StarRating starRating){
+    public ResponseEntity<List<Course>> getCoursesByVariable(
+            @RequestParam(name = "byStarRating", required = false) StarRating starRating,
+            @RequestParam(name = "byCustomer", required = false) Long id)
+    {
         if (starRating != null){
             return new ResponseEntity<>(courseRepository.findCourseByStarRating(starRating), HttpStatus.OK);
+        } else if (id != null) {
+            return new ResponseEntity<>(courseRepository.findByBookingsCustomerId(id), HttpStatus.OK);
         } else {
-           return new ResponseEntity<>(courseRepository.findAll(),HttpStatus.OK);
+            return new ResponseEntity<>(courseRepository.findAll(),HttpStatus.OK);
         }
     }
 }

@@ -117,7 +117,7 @@ class CourseBookingSystemApplicationTests {
 
 
 		Course course1 = new Course("Cook Italian", "Rome", StarRating.FOUR);
-		Course course2 = new Course("Cook French", "Paris", StarRating.FOUR);
+		Course course2 = new Course("Cook French", "Paris", StarRating.THREE);
 		courseRepository.save(course1);
 		courseRepository.save(course2);
 
